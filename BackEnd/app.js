@@ -9,4 +9,7 @@ mongoose.connect('mongodb+srv://elsequiel:QTVA9Nh695eW1Pzk@cluster0.7iwy0.mongod
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch(() => console.log('Connexion à MongoDB échouée !'));
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
   module.exports = app;
