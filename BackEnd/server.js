@@ -1,5 +1,5 @@
 const http = require('http');
-const app = require('./app');
+const app = require('./app.js');
 
 // Execution uniquement sur le port 3000
 app.set ('port', process.env.PORT || 3000);
