@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');// protection des routes avec l'authentification par token
+require('dotenv').config();
 
 module.exports = (req, res, next) => {
   try {
