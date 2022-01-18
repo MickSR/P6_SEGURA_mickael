@@ -29,10 +29,4 @@ app.use((req, res, next) => {
 app.use(express.json());//express.json()) pour analyser le corps de la requête (bodyparser) en tant qu'objet JSON
 app.use("/api/auth", userRoutes);
 
-mongoose.connect(process.env.SECRET_DB, //conection au server mongoDB
-  { useNewUrlParser: true,
-    useUnifiedTopology: true })
-  .then(() => console.log('Connexion à MongoDB réussie !'))
-  .catch(() => console.log('Connexion à MongoDB échouée !'));
-
   module.exports = app;
