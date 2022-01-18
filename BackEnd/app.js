@@ -6,6 +6,8 @@ const helmet = require("helmet"); //aide à sécuriser mes applications Express 
 const path = require("path"); // gestion des chemins de fichiers
 const userRoutes = require("./routes/user");
 
+app.use(express.json());//express.json()) pour analyser le corps de la requête (bodyparser) en tant qu'objet JSON
+
 mongoose.connect(process.env.SECRET_DB,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -20,7 +22,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.json());//express.json()) pour analyser le corps de la requête (bodyparser) en tant qu'objet JSON
 app.use("/api/auth", userRoutes);
 
 module.exports = app;
