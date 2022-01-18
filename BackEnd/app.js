@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 
-//express.json()) pour analyser le corps de la requête (bodyparser) en teant qu'objet JSON
+//express.json()) pour analyser le corps de la requête (bodyparser) en tant qu'objet JSON
 //extended : true pour analyser des objets imbriqués (chaînes ou tableaux)
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
