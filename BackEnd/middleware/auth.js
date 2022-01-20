@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');// protection des routes avec l'authentification par token
-require('dotenv').config();
+require('dotenv').config();// charge les variables d'environnement d'un .envfichier dans process.env
 
 module.exports = (req, res, next) => {
   try {
