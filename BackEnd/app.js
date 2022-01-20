@@ -29,8 +29,7 @@ app.use((req, res, next) => {
   next();
 });
 
-// Express app secure toolset
-app.use(helmet());
+app.use(helmet());//Helmet aide à sécuriser vos applications Express en définissant divers en-têtes HTTP
 
 app.use('/api/auth', userRoutes);
 
