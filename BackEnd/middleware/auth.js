@@ -14,7 +14,6 @@ module.exports = (req, res, next) => {
     }
   } 
   catch {
-      const message = 'vous n êtes pas autorisé à accéder à cette page'
-        res.status(401).json({message, data:error})
+        res.status(401).json({message:'vous n êtes pas autorisé à accéder à cette page', data:error})
   }
 };

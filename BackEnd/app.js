@@ -3,11 +3,9 @@ const mongoose = require('mongoose');
 const helmet = require("helmet");
 const path = require('path');
 const app = express();
-
 const userRoutes = require('./routes/user');
-
-
 require("dotenv").config();//charge les variables d'environnement d'un .envfichier dans process.env
+
 mongoose.connect(process.env.SECRET_DB,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
