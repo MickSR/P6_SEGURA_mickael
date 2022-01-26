@@ -1,5 +1,5 @@
 const Sauce = require('../models/sauce');
- const fs = require('fs');
+ const fs = require('fs'); //façon intuitive de travailler avec le système de fichiers
 
  //ajout d'une sauce 
 exports.createSauce = (req ,res ) => {
