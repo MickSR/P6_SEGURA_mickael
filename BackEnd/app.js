@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const helmet = require("helmet");
 const path = require('path');
 const app = express();
+const sauceRoutes = require("./routes/sauce");
 const userRoutes = require('./routes/user');
 require("dotenv").config();//charge les variables d'environnement d'un .envfichier dans process.env
 
@@ -26,6 +27,9 @@ app.use((req, res, next) => { //passer la sécurité CORS , on autorise toutes l
 
 app.use(helmet());//Helmet aide à sécuriser vos applications Express en définissant divers en-têtes HTTP
 
+// chemin middleware sauces - utilisateurs - images
+app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/api/sauces", sauceRoutes);
 app.use('/api/auth', userRoutes);
 
 module.exports = app;
