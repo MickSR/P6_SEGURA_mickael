@@ -7,6 +7,13 @@ const sauceRoutes = require("./routes/sauce");
 const userRoutes = require('./routes/user');
 require("dotenv").config();//charge les variables d'environnement d'un .envfichier dans process.env
 
+app.use((req, res, next) => { //passer la sécurité CORS , on autorise toutes les origines à accéder à notre API
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
+  next();
+});
+
 mongoose.connect(process.env.SECRET_DB,
   { useNewUrlParser: true,
     useUnifiedTopology: true })
@@ -17,13 +24,6 @@ mongoose.connect(process.env.SECRET_DB,
   app.use(express.json());//analyse du corps de la requête en tant qu'objets JSON (utilisé pour les requêtes POST)
   app.use(express.urlencoded({extended: true,})//méthode intégrée à express pour reconnaître l'objet de requête entrant sous forme de chaînes ou de tableaux
   );
-
-app.use((req, res, next) => { //passer la sécurité CORS , on autorise toutes les origines à accéder à notre API
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
-  next();
-});
 
 app.use(helmet());//Helmet aide à sécuriser vos applications Express en définissant divers en-têtes HTTP
 
