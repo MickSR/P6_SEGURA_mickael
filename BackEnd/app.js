@@ -10,7 +10,6 @@ require("dotenv").config();//charge les variables d'environnement d'un .envfichi
 app.use((req, res, next) => { //passer la sécurité CORS , on autorise toutes les origines à accéder à notre API
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
-  res.setHeader('Cross-Origin-Resource-Policy', 'same-site')
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization');
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
   next();
@@ -27,7 +26,8 @@ mongoose.connect(process.env.SECRET_DB,
   app.use(express.urlencoded({extended: true,})//méthode intégrée à express pour reconnaître l'objet de requête entrant sous forme de chaînes ou de tableaux
   );
 
-app.use(helmet());//Helmet aide à sécuriser vos applications Express en définissant divers en-têtes HTTP
+//Helmet aide à sécuriser vos applications Express en définissant divers en-têtes HTTP
+app.use(helmet({crossOriginResourcePolicy: false,}));
 
 // chemin middleware sauces - utilisateurs - images
 app.use("/images", express.static(path.join(__dirname, "images")));
