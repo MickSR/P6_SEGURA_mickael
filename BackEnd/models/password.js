@@ -3,11 +3,11 @@ const passwordValidator = require('password-validator');//répond aux exigences 
 const passwordSchema = new passwordValidator();
 
 passwordSchema
-.is().min(10)                                    
+.is().min(8)                                    
 .is().max(64)                                  
-.has().uppercase()                              
+.has().uppercase(1)                              
 .has().lowercase()                             
-.has().digits()                                
+.has().digits(1)                                
 .has().not().spaces()                    
 
 module.exports = passwordSchema;
