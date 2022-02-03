@@ -8,8 +8,8 @@ exports.createSauce = (req, res) => {
     ...sauceObject,
     imageUrl: `${req.protocol}://${req.get("host")}/images/${
       req.file.filename
-    }`,
-  }); // Url dynamique selon chemin serveur
+    }`, // Url dynamique selon chemin serveur
+  });
   // enregistrement nouvelle sauce dans la base de données
   sauce
     .save()
@@ -140,26 +140,26 @@ exports.noteSauce = (req, res) => {
         res.status(500).json({ message, data: error });
       });
   }
-
+  // ajout d'un like et ajout du userId dans le usersLiked
   if (req.body.like === 1) {
     Sauce.updateOne(
       { _id: req.params.id },
       { $inc: { likes: 1 }, $push: { usersLiked: req.body.userId } }
     )
-      // ajout d'un like et ajout du userId dans le usersLiked
+
       .then(() => res.status(200).json({ message: "note prise en compte" }))
       .catch((error) => {
         const message = `votre note n'a pu être prise en compte, merci de réessayer dans quelques instants.`;
         res.status(500).json({ message, data: error });
       });
   }
-
+  // ajout d'un dislike et ajout du userId dans le usersDisliked
   if (req.body.like === -1) {
     Sauce.updateOne(
       { _id: req.params.id },
       { $inc: { dislikes: 1 }, $push: { usersDisliked: req.body.userId } }
     )
-      // ajout d'un dislike et ajout du userId dans le usersDisliked
+
       .then(() => res.status(200).json({ message: "note prise en compte" }))
       .catch((error) => {
         const message = `votre note n'a pu être prise en compte, merci de réessayer dans quelques instants.`;
